@@ -1,0 +1,24 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "packages/server/index.js",
+      "use": "@vercel/node"
+    },
+    {
+      "src": "packages/theme/package.json",
+      "use": "@vercel/static-build"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "packages/server/index.js"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/packages/theme/dist/$1"
+    }
+  ]
+}
+// This configuration file is for deploying a Node.js server and a static Vue.js theme to Vercel.
